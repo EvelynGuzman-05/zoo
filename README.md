@@ -1,12 +1,12 @@
-# PRoyecto Zoo
+# Proyecto Zoo
 
 Este protyecto sirve para 
 administrar un **zoológico**
 
 ## Instalación
 Para montar este proyecto instala
-las dependencias deñ archivo 
-requeriments.txt
+las dependencias del archivo 
+requeriments.txt usando el siguiente comando:
 
 pip install -r requirements.txt
 
