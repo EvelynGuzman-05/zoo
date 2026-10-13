@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    container_name: zoo-dev
+    volumes:
+      - .:/app
+
+  db:
+    image: mysql:8.4
+    container_name: zoo-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: zoo
+      MYSQL_USER: zoo_user
+      MYSQL_PASSWORD: zoo_pass
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/db.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
