@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Zoológico Animalesco</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/app.js" defer></script>
+</head>
+<body>
+    <h1>Bienvenido al Zoológico Animalesco</h1>
+
+    <form id="form" action="/agregar" method="POST" class="form-card form-inline">
+        <input name="nombre" placeholder="Nombre" required>
+        <input name="especie" placeholder="Especie" required>
+        <input name="color" placeholder="Color" required>
+        <div class="botones">
+            <button id="btn-add">Agregar</button>
+            <a id="cancelar" href="/" hidden>Cancelar</a>
+        </div>
+    </form>
+
+    <table>
+        <tr><th>Nombre</th><th>Especie</th><th>Color</th><th></th></tr>
+        {% for a in animales %}
+        <tr>
+            <td>{{ a.nombre }}</td>
+            <td>{{ a.especie }}</td>
+            <td>{{ a.color }}</td>
+            <td>
+                <button type="button" class="btn-edit"
+                        data-id="{{ a.id }}"
+                        data-nombre="{{ a.nombre }}"
+                        data-especie="{{ a.especie }}"
+                        data-color="{{ a.color }}">Editar</button>
+                <form action="/eliminar/{{ a.id }}" method="POST">
+                    <button class="btn-delete">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
