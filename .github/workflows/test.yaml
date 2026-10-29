@@ -1,0 +1,21 @@
+name: Pruebas del zoológico
+
+on:
+  push
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v7
+
+      - name: Levantar MySQL
+        run: docker compose up -d db
+
+      - name: Esperar a MySQL
+        run: sleep 30
+
+      - name: Ejecutar pruebas
+        run: docker compose run --rm app python -m pytest

@@ -1,32 +1,32 @@
 import mysql.connector
 from flask import Flask, render_template, request, redirect
-from funcions import funcion as zoo
+from functions import function as zoo
 app = Flask(__name__)
 
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", animales=all_animales())
+    return render_template("index.html", animales=zoo.all_animals())
 
 
-@app.route("/agregar", methods=["POST"])
-def agregar():
+@app.route("/add", methods=["POST"])
+def add():
     f = request.form
-    zoo.agregar(f["nombre"], f["color"], f["especie"])
+    zoo.add_animal(f["nombre"], f["color"], f["especie"])
     return redirect("/")
 
 
-@app.route("/eliminar/<int:id>", methods=["POST"])
-def eliminar(id):
-    zoo.eliminar(id)
+@app.route("/delete/<int:id>", methods=["POST"])
+def delete(id):
+    zoo.delete_animal(id)
     return redirect("/")
 
 
-@app.route("/editar/<int:id>", methods=["POST"])
-def editar(id):
+@app.route("/update/<int:id>", methods=["POST"])
+def update(id):
     f = request.form
-    zoo.editar(id, f["nombre"], f["color"], f["especie"])
+    zoo.update_animal(id, f["nombre"], f["color"], f["especie"])
     return redirect("/")
 
 
